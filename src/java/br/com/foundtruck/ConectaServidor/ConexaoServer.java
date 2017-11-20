@@ -6,6 +6,7 @@
 package br.com.foundtruck.ConectaServidor;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -27,11 +28,33 @@ public class ConexaoServer {
     private static final String PUT = "PUT";
     private static final String DELETE = "DELETE";
     
-    private static final String content = "Content-Type";
-    private static final String json = "application/json";
+    private static final String CONTENT = "Content-Type";
+    private static final String JSON = "application/json";
     
-    public void getMethod(){
+    public String getMethod(String path){
+        String resposta = null;
+        //String caminho = urlServer + path;
         
+        String caminho = urlServer + "usuario/lista";
+        try {
+            url = new URL(caminho);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            connection.setRequestMethod(GET);
+            connection.setRequestProperty("Accept", JSON);
+            
+            InputStream object = connection.getInputStream();
+            
+            resposta = object.toString();
+            
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConexaoServer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ConexaoServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return resposta;
     }
     
     public void postMethod(String path, String objeto){
@@ -43,7 +66,7 @@ public class ConexaoServer {
             
             connection.setDoOutput(true);
             connection.setRequestMethod(POST);
-            connection.setRequestProperty(content, json);
+            connection.setRequestProperty(CONTENT, JSON);
             
             OutputStream os = connection.getOutputStream();
             os.write(objeto.getBytes());
@@ -62,8 +85,8 @@ public class ConexaoServer {
         }
     }
     
-    public void putMethod(){
-        
+    public void putMethod(String path, String objeto){
+        String caminho = urlServer + path;
     }
     
     public void deleteMethod(){
