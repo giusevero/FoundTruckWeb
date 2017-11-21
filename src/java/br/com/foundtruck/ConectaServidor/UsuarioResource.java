@@ -28,11 +28,22 @@ public class UsuarioResource {
         server = new ConexaoServer();
     }
 
-    public void login(Usuario usuario) {
+    public boolean login(Usuario usuario) {
 
-        json = toJson.usuarioToJson(usuario);
+        boolean resposta;
+        
+        try {
+            json = toJson.usuarioToJson(usuario);
 
-        server.postMethod(resource + "/login", json);
+            server.postMethod(resource + "/login", json);
+            
+            return resposta = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+            return resposta = false;
+        }
+        
     }
 
     public void cadastrar(Usuario usuario) {

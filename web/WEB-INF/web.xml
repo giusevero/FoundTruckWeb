@@ -18,10 +18,20 @@
     
     <session-config>
         <session-timeout>
-            30
+            10
         </session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    
+    <filter>
+        <filter-name>PageFilter</filter-name>
+        <filter-class>br.com.foundtruck.Utils.PageFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>PageFilter</filter-name>
+        <url-pattern>/Restrito/*</url-pattern>
+    </filter-mapping>
 </web-app>

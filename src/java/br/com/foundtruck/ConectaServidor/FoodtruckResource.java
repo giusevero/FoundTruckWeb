@@ -10,5 +10,9 @@ package br.com.foundtruck.ConectaServidor;
  * @author giusevero
  */
 public class FoodtruckResource {
+
+    public FoodtruckResource() {
+    }
+    
     
 }
