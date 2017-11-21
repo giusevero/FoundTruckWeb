@@ -14,18 +14,31 @@ import br.com.foundtruck.models.Usuario;
  * @author giusevero
  */
 public class UsuarioResource {
-    
-    ToJson toJson = new ToJson();
-    FromJson fromJson = new FromJson();
-    ConexaoServer server = new ConexaoServer();
+
+    ToJson toJson;
+    FromJson fromJson;
+    ConexaoServer server;
     String json;
-    
+
     private final String resource = "usuario";
-    
-    public void login(Usuario usuario){
-        
+
+    public UsuarioResource() {
+        toJson = new ToJson();
+        fromJson = new FromJson();
+        server = new ConexaoServer();
+    }
+
+    public void login(Usuario usuario) {
+
+        json = toJson.usuarioToJson(usuario);
+
+        server.postMethod(resource + "/login", json);
+    }
+
+    public void cadastrar(Usuario usuario) {
+
         json = toJson.usuarioToJson(usuario);
         
-        server.postMethod(resource+"/login", json);
+        server.postMethod(resource, json);
     }
 }
