@@ -14,14 +14,12 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author giuse
+ * @author giusevero
  */
 @Named(value = "login")
 @SessionScoped
@@ -53,7 +51,7 @@ public class Login implements Serializable {
 
             utils.setAttribute("usuario", usuario.getEmail());
 
-            ec.redirect("");
+            ec.redirect("Restrito/Restrito.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -67,7 +65,7 @@ public class Login implements Serializable {
         try {
             context = FacesContext.getCurrentInstance();
             ec = context.getExternalContext();
-            ec.redirect("index.html");
+            ec.redirect(ec.getRequestContextPath()+"/index.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
