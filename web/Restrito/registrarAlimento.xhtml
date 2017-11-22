@@ -23,10 +23,33 @@
 <body class="bg-dark">
   <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Registrar Food Truck</div>
+      <div class="card-header">Registrar Alimento</div>
       <div class="card-body">
 	  
+          <h:form>
+              
+          <div class="form-group">
+            <div class="form-row">
+            <label for="inputAlimentoNome">Nome do Alimento</label>
+            <h:inputText class="form-control" id="inputAlimentoNome" 
+            pt:placeholder="Entre com o nome do Alimento"
+            value=""/>
+            </div>
+          </div>
+              
+          <div class="form-group">
+            <div class="form-row">
+            <label for="inputAlimentoImg">Url da Imagem do Alimento</label>
+            <h:inputText class="form-control" id="inputAlimentoImg" 
+            pt:placeholder="Entre com o endereço da url"
+            value=""/>
+            </div>
+          </div>              
+                           
 
+       <h:commandLink class="btn btn-primary btn-block" action="#">Registrar</h:commandLink>
+       <a class="btn btn-primary btn-block" href="Alimento.xhtml">Voltar</a>
+	</h:form>
 
 		
       </div>

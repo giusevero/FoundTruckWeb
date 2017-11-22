@@ -23,49 +23,32 @@
 <body class="bg-dark">
   <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Registrar Cardapio</div>
+      <div class="card-header">Atualizar Alimento</div>
       <div class="card-body">
 	  
           <h:form>
               
           <div class="form-group">
             <div class="form-row">
-            <label for="inputCardapioNome">Nome do Alimento</label>
-            <h:inputText class="form-control" id="inputCardapioNome" 
-            pt:placeholder="Entre com o nome do Alimento do Cardapio"
+            <label for="inputAlimentoNome">Nome do Alimento</label>
+            <h:inputText class="form-control" id="inputAlimentoNome" 
+            pt:placeholder="Entre com o nome do Alimento"
             value=""/>
             </div>
-          </div>                           
+          </div>
               
           <div class="form-group">
             <div class="form-row">
-            <label for="inputCardapioDescricao">Descrição do Alimento</label>
-               <h:inputTextarea cols="30" rows="10" class="form-control" id="inputCardapioDescricao"
-                pt:placeholder="Entre com a Descriçãodo Alimento do Cardapio" value=""/>
-          </div> 
-              </div>
-              
-          <div class="form-group">
-            <div class="form-row">
-            <label for="inputCardapioPreco">Preço do Alimento</label>
-            <h:inputText class="form-control" id="inputCardapioPreco" value = "">
-            <f:convertNumber minFractionDigits="2" />
-         </h:inputText>
-          </div> 
-              </div>              
-              
-          <div class="form-group">
-            <div class="form-row">
-            <label for="inputCardapioImg">Url da Imagem do Alimento</label>
-            <h:inputText class="form-control" id="inputCardapioImg" 
+            <label for="inputAlimentoImg">Url da Imagem do Alimento</label>
+            <h:inputText class="form-control" id="inputAlimentoImg" 
             pt:placeholder="Entre com o endereço da url"
             value=""/>
             </div>
           </div>              
-                          
+                           
 
-       <h:commandLink class="btn btn-primary btn-block" action="#">Registrar</h:commandLink>
-       <a class="btn btn-primary btn-block" href="Cardapio.xhtml">Voltar</a>
+       <h:commandLink class="btn btn-primary btn-block" action="#">Atualizar</h:commandLink>
+       <a class="btn btn-primary btn-block" href="Alimento.xhtml">Voltar</a>
 	</h:form>
 
 		
