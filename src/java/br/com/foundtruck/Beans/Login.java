@@ -51,7 +51,7 @@ public class Login implements Serializable {
 
             utils.setAttribute("usuario", usuario.getEmail());
 
-            ec.redirect("Restrito/Restrito.xhtml");
+            ec.redirect("Restrito/index.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
 
