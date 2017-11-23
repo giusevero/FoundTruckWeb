@@ -106,28 +106,10 @@
                 </ol>
             </div>
 
-            <!-- INICIO-->
-            <h:form id="formulario">
-                <h:outputText id="titulo" value="Cadastro de Contatos" style="font-weight: bold;"/>
-                <h:panelGrid id="dados" columns="2">
-                    <h:outputText id="nomeLabel" value="Nome:"/>
-                    <h:inputText id="nome" label="Nome" value="#{contatoMB.contato.nome}" maxlength="50"/>
-                    <h:outputText id="telefoneLabel" value="Telefone:"/>
-                    <h:inputText id="telefone" label="Telefone" value="#{contatoMB.contato.telefone}" maxlength="15"/>
-                    <h:outputText id="nascimentoLabel" value="Data de Nascimento:"/>
-                    <h:inputText id="nascimento" label="Data de Nascimento" value="#{contatoMB.contato.dataNascimento}" maxlength="10">
-
-                        <f:convertDateTime id="padraoData" pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                    </h:inputText>
-                </h:panelGrid>
-                <h:commandButton id="cadastrar" value="Cadastrar" action="#{contatoMB.adicionarContato}"/>
-                <h:messages id="msg"/>
-            </h:form>
-            <!-- FIM-->
             <!-- Dados do Cliente-->
 
             <div class="container">
-                <div class="card card-register mx-auto mt-5">
+                <div class="card card-register ">
                     <div class="card-header">Meus Dados</div>
                     <div class="card-body">
                         <h:form>
@@ -139,10 +121,7 @@
                                         <label for="exampleInputName">Primeiro nome</label>
                                         <h:inputText   class="form-control" id="exampleInputName" 
                                                        pt:placeholder="Entre com o primeiro nome"
-                                                       value="#{registroMB.usuario.nome}"/>   
-
-
-
+                                                       value="#{dadosMB.usuario.nome}"/>   
                                     </div>
                                     <div class="col-md-6">
                                         <h:graphicImage url="img/logo_sombra.png" width="300px"/>
@@ -152,7 +131,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
                                 <h:inputText class="form-control" id="exampleInputEmail1" pt:placeholder="Entre com email"
-                                             value="#{registroMB.usuario.email}" validatorMessage="E-mail incorreto">
+                                             value="#{dadosMB.usuario.email}" validatorMessage="E-mail incorreto">
                                     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                                 </h:inputText>
                             </div>
@@ -161,18 +140,17 @@
                                     <div class="col-md-6">
                                         <label for="exampleInputPassword1">Senha</label>
                                         <h:inputSecret class="form-control" id="exampleInputPassword1"
-                                                       pt:placeholder="Senha" value="#{registroMB.usuario.senha}"/>
+                                                       pt:placeholder="Senha" value="#{dadosMB.usuario.senha}"/>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleConfirmPassword">Confirme a senha</label>
                                         <h:inputSecret class="form-control" id="exampleConfirmPassword"
-                                                       pt:placeholder="Confirme a senha" value="#{registroMB.usuario.senha}"/>
+                                                       pt:placeholder="Confirme a senha" />
                                     </div>
                                 </div>
                             </div>
-
+                            <h:commandLink class="btn btn-primary btn-block" >Atualizar</h:commandLink>
                         </h:form>
-                    
                     </div>
                 </div>
             </div>
