@@ -26,14 +26,14 @@
       <div class="card-header">Registrar Alimento</div>
       <div class="card-body">
 	  
-          <h:form>
-              
+ <h:form>
+              <h:messages/>
           <div class="form-group">
             <div class="form-row">
             <label for="inputAlimentoNome">Nome do Alimento</label>
             <h:inputText class="form-control" id="inputAlimentoNome" 
             pt:placeholder="Entre com o nome do Alimento"
-            value=""/>
+            value="#{alimentoMB.alimento.alimento}"/>
             </div>
           </div>
               
@@ -42,12 +42,12 @@
             <label for="inputAlimentoImg">Url da Imagem do Alimento</label>
             <h:inputText class="form-control" id="inputAlimentoImg" 
             pt:placeholder="Entre com o endereço da url"
-            value=""/>
+            value="#{alimentoMB.alimento.imagem}"/>
             </div>
           </div>              
                            
 
-       <h:commandLink class="btn btn-primary btn-block" action="#">Registrar</h:commandLink>
+              <h:commandLink class="btn btn-primary btn-block" action="#{alimentoMB.registrarA}">Registrar</h:commandLink>
        <a class="btn btn-primary btn-block" href="Alimento.xhtml">Voltar</a>
 	</h:form>
 

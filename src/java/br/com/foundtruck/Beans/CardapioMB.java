@@ -5,8 +5,8 @@
  */
 package br.com.foundtruck.Beans;
 
-import br.com.foundtruck.ConectaServidor.FoodtruckResource;
-import br.com.foundtruck.models.Foodtruck;
+import br.com.foundtruck.ConectaServidor.CardapioResource;
+import br.com.foundtruck.models.Cardapio;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -16,38 +16,37 @@ import javax.faces.view.ViewScoped;
 
 /**
  *
- * @author giuse
+ * @author Thomas
  */
-@Named(value = "foodtruckMB")
+@Named(value = "cardapioMB")
 @ViewScoped
-public class FoodtruckMB implements Serializable{
+public class CardapioMB implements Serializable{
     
-    Foodtruck foodtruck;
-    FoodtruckResource resource;
+    Cardapio cardapio;
+    CardapioResource resource;
     private FacesContext context;
     private ExternalContext ec;
 
     /**
-     * Creates a new instance of foodtruckMB
+     * Creates a new instance of cardapioMB
      */
-    public FoodtruckMB() {
-        foodtruck = new Foodtruck();
-        resource = new FoodtruckResource();
+    public CardapioMB() {
+        cardapio = new Cardapio();
+        resource = new CardapioResource();
         context = FacesContext.getCurrentInstance();
         ec = context.getExternalContext();
     }
     
-    public void RegistrarF(){
-    
-        try{
-            
-            resource.cadastrarF(foodtruck);
+        public void RegistrarC(){
+        
+        try {
+            resource.cadastrarC(cardapio);
             
             context = FacesContext.getCurrentInstance();
             ec = context.getExternalContext();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro", "Registro feito com sucesso!"));
             
-            ec.redirect("FoodTruck.xhtml");
+            ec.redirect("Cardapio.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
             
@@ -56,15 +55,15 @@ public class FoodtruckMB implements Serializable{
         
     }
     
-    public Foodtruck getFoodtruck(){
+    public Cardapio getCardapio(){
     
-        return foodtruck;
+        return cardapio;
         
     }
     
-    public void setFoodtruck(Foodtruck foodtruck){
+    public void setCardapio(Cardapio cardapio){
     
-        this.foodtruck = foodtruck;
-        
+        this.cardapio = cardapio;
+    
     }
 }

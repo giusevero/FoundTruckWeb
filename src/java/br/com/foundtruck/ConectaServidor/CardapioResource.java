@@ -7,32 +7,33 @@ package br.com.foundtruck.ConectaServidor;
 
 import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
-import br.com.foundtruck.models.Foodtruck;
+import br.com.foundtruck.models.Cardapio;
 /**
  *
- * @author giusevero
+ * @author Thomas
  */
-public class FoodtruckResource {
+public class CardapioResource {
     
     ToJson toJson;
     FromJson fromJson;
     ConexaoServer server;
     String json;
     
-    private final String resource = "foodtruck";
-
-    public FoodtruckResource() {
+    private final String resource = "cardapio";
+    
+    public CardapioResource(){
+    
         toJson = new ToJson();
         fromJson = new FromJson();
         server = new ConexaoServer();
+    
     }
     
-    public void cadastrarF(Foodtruck foodtruck){
-    
-        json = toJson.foodtruckToJson(foodtruck);
+        public void cadastrarC(Cardapio cardapio) {
+
+        json = toJson.cardapioToJson(cardapio);
         
         server.postMethod(resource, json);
-        
     }
     
 }

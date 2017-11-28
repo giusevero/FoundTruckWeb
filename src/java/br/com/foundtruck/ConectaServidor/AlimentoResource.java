@@ -7,29 +7,31 @@ package br.com.foundtruck.ConectaServidor;
 
 import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
-import br.com.foundtruck.models.Foodtruck;
+import br.com.foundtruck.models.Alimento;
 /**
  *
- * @author giusevero
+ * @author Thomas
  */
-public class FoodtruckResource {
+public class AlimentoResource {
     
     ToJson toJson;
     FromJson fromJson;
     ConexaoServer server;
     String json;
     
-    private final String resource = "foodtruck";
+    private final String resource = "alimento";
+    
+    public AlimentoResource(){
 
-    public FoodtruckResource() {
         toJson = new ToJson();
         fromJson = new FromJson();
         server = new ConexaoServer();
-    }
+
+}
     
-    public void cadastrarF(Foodtruck foodtruck){
+        public void cadastrarA(Alimento alimento){
     
-        json = toJson.foodtruckToJson(foodtruck);
+        json = toJson.alimentoToJson(alimento);
         
         server.postMethod(resource, json);
         
