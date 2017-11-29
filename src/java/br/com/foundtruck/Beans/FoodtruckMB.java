@@ -5,8 +5,11 @@
  */
 package br.com.foundtruck.Beans;
 
+import br.com.foundtruck.ConectaServidor.FoodtruckResource;
 import br.com.foundtruck.models.Foodtruck;
 import java.io.Serializable;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 
@@ -19,14 +22,27 @@ import javax.faces.view.ViewScoped;
 public class FoodtruckMB implements Serializable{
 
     Foodtruck foodtruck;
-    
+    FoodtruckResource resource;
+    private FacesContext context;
+    private ExternalContext ec;
     /**
      * Creates a new instance of FoodtruckMB
      */
     public FoodtruckMB() {
         foodtruck = new Foodtruck();
+        resource = new FoodtruckResource();
+        context = FacesContext.getCurrentInstance();
+        ec = context.getExternalContext();
     }
 
+    
+    public void cadastrar(){
+        
+        resource.cadastrar(foodtruck);
+        
+        context = FacesContext.getCurrentInstance();
+        ec = context.getExternalContext();
+    }
     public Foodtruck getFoodtruck() {
         return foodtruck;
     }

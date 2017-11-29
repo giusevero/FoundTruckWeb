@@ -39,6 +39,14 @@ public class ToJson {
         return usuario;
     }
     
+    public String foodtruckToJson(Foodtruck objeto){
+        gson = new Gson();
+        
+        String foodtruck = gson.toJson(objeto);
+        
+        return foodtruck;
+    }
+    
     public String listaAlimentoToJson(List<Alimento> lista) {
         gson = new Gson();
 

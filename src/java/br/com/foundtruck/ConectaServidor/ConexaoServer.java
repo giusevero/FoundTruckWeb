@@ -89,7 +89,7 @@ public class ConexaoServer {
         String caminho = urlServer + path;
     }
     
-    public void deleteMethod(){
+    public void deleteMethod(String path, String objeto){
         
     }
     

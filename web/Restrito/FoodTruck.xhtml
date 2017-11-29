@@ -121,19 +121,24 @@
                                                        pt:placeholder="Nome do Foodtruck"
                                                        value="#{foodtruckMB.foodtruck.nome}"/>   
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Descrição do Foodtruck</label>
                                 <h:inputTextarea class="form-control" id="exampleInputEmail1" pt:placeholder="Descrição do Foodtruck"
-                                             value="#{foodtruckMB.foodtruck.descricao}" >
-                                    
+                                                 value="#{foodtruckMB.foodtruck.descricao}" >
+
                                 </h:inputTextarea>
                                 <p class="help-block text-danger"></p>
                             </div>
-                            
-                            <h:commandLink class="btn btn-primary btn-block" >Atualizar</h:commandLink>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <label class="form-check-label"> 
+                                        <h:selectBooleanCheckbox class="form-check-input"/> Ativo</label>
+                                </div>
+                            </div>
+                            <h:commandLink class="btn btn-primary btn-block" action="#{foodtruckMB.cadastrar()}">Atualizar</h:commandLink>
                         </h:form>
                     </div>
                 </div>
