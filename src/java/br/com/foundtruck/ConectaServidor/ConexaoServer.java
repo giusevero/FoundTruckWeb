@@ -31,7 +31,7 @@ public class ConexaoServer {
     private static final String CONTENT = "Content-Type";
     private static final String JSON = "application/json";
     
-    public String getMethod(String path){
+    public String getMethod(String path,String paramName, String paramValue){
         String resposta = null;
         //String caminho = urlServer + path;
         
