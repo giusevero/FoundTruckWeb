@@ -38,20 +38,36 @@ public class AlimentoMB implements Serializable{
     
         public void Registrar(){
         
+            try{
         resource.cadastrarA(alimento);
             
         context = FacesContext.getCurrentInstance();
         ec = context.getExternalContext();
-
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro", "Registro feito com sucesso!"));
+            
+            ec.redirect("Alimento.xhtml");
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Erro no registro! Tente de novo"));
+        }
     }
         
         public void Atualizar(){
         
+            try{
         resource.atualizaA(alimento);
         
         context = FacesContext.getCurrentInstance();
         ec = context.getExternalContext();
-        
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registro", "Registro atualizado com sucesso!"));
+            
+            ec.redirect("Alimento.xhtml");
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Erro no registro! Tente de novo"));
+        }
         }
     
     public Alimento getAlimento(){
