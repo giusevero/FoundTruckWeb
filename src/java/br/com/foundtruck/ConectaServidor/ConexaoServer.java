@@ -33,9 +33,12 @@ public class ConexaoServer {
     
     public String getMethod(String path,String paramName, String paramValue){
         String resposta = null;
-        //String caminho = urlServer + path;
         
-        String caminho = urlServer + "usuario/lista";
+        String caminho = urlServer + path;
+        
+        if(!paramName.equals("") || paramName!=null)
+            caminho = caminho +"?"+paramName+"="+paramValue;
+            
         try {
             url = new URL(caminho);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
