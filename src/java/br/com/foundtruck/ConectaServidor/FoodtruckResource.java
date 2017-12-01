@@ -7,6 +7,7 @@ package br.com.foundtruck.ConectaServidor;
 
 import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
+import br.com.foundtruck.Utils.SessionUtils;
 import br.com.foundtruck.models.Foodtruck;
 
 /**
@@ -19,19 +20,55 @@ public class FoodtruckResource {
     FromJson fromJson;
     ConexaoServer server;
     String json;
-    
-     private final String resource = "foodtruck";
-    
+    SessionUtils utils;
+    private final String resource = "foodtruck";
+
     public FoodtruckResource() {
         toJson = new ToJson();
         fromJson = new FromJson();
-        server = new ConexaoServer();
+
+        utils = SessionUtils.getIntance();
     }
-    
-    public void cadastrar(Foodtruck foodtruck){
+
+    /**
+     * Cadastro do foodtruck
+     * @param foodtruck Objeto foodtruck a ser cadastrado
+     */
+    public void cadastrar(Foodtruck foodtruck) {
+        server = new ConexaoServer();
+
+        foodtruck.setEmail_usuario((String) utils.getAttribute("usuario"));
+        foodtruck.setAtivo("1");
+        json = toJson.foodtruckToJson(foodtruck);
+
+        server.postMethod(resource, json);
+    }
+
+    /**
+     * Método para atualizar foodtruck no banco
+     * @param foodtruck Objeto Foodtruck
+     */
+    public void atualiza(Foodtruck foodtruck){
+        server = new ConexaoServer();
         
         json = toJson.foodtruckToJson(foodtruck);
+        server.putMethod(resource, json);
+    }
+    
+    /**
+     * Método para carregar foodtruck associado a um usuário
+     * @return Foodtruck do usuário
+     */
+    public Foodtruck dados() {
+        server = new ConexaoServer();
+        String foodtruckJson;
+        Foodtruck foodtruck = new Foodtruck();
         
-        server.postMethod(resource, json);
+        foodtruckJson = server.getMethod(resource + "/" + resource, "email", (String) utils.getAttribute("usuario"));
+        
+        foodtruck = fromJson.foodtruckFromJson(foodtruckJson);
+        
+        utils.setAttribute("id_foodtruck", foodtruck.getId());
+        return foodtruck;
     }
 }

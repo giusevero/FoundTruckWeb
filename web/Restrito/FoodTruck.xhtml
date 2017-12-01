@@ -20,6 +20,10 @@
         <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet"/>
         <!-- Custom styles for this template-->
         <link href="css/sb-admin.css" rel="stylesheet"/>
+
+        <f:metadata>
+            <f:viewAction action="#{foodtruckMB.dadosFoodtruck()}"/>
+        </f:metadata>
     </head>
 
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -110,7 +114,7 @@
                 <div class="card card-register">
                     <div class="card-header">Meus Dados</div>
                     <div class="card-body">
-                        <h:form>
+                        <h:form enctype="multipart/form-data">
                             <h:messages/>
                             <div class="form-group">
                                 <div class="form-row">
@@ -125,6 +129,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <h:inputFile >
+
+                                </h:inputFile>
+
+                            </div >
+                            <div class="form-group">
                                 <label for="exampleInputEmail1">Descrição do Foodtruck</label>
                                 <h:inputTextarea class="form-control" id="exampleInputEmail1" pt:placeholder="Descrição do Foodtruck"
                                                  value="#{foodtruckMB.foodtruck.descricao}" >
@@ -135,10 +145,13 @@
                             <div class="form-group">
                                 <div class="form-check">
                                     <label class="form-check-label"> 
-                                        <h:selectBooleanCheckbox class="form-check-input"/> Ativo</label>
+                                        <h:selectBooleanCheckbox class="form-check-input" /> Ativo</label>
                                 </div>
                             </div>
-                            <h:commandLink class="btn btn-primary btn-block" action="#{foodtruckMB.cadastrar()}">Atualizar</h:commandLink>
+                            <h:commandLink class="btn btn-primary btn-block" action="#{foodtruckMB.cadastrar}"
+                                           rendered="#{foodtruckMB.foodtruck.nome eq ''}">Cadastrar</h:commandLink>
+                            <h:commandLink class="btn btn-primary btn-block" action="#{foodtruckMB.atualizar}" 
+                                           rendered="#{foodtruckMB.foodtruck.nome ne ''}">Atualizar</h:commandLink>
                         </h:form>
                     </div>
                 </div>

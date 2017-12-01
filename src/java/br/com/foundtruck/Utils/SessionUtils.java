@@ -39,10 +39,20 @@ public class SessionUtils {
         currentExternalContext().invalidateSession();
     }
 
+    /**
+     * Retornar uma varável de sessão
+     * @param nome Nome da variável de sessão
+     * @return Valor da variável de sessão
+     */
     public Object getAttribute(String nome) {
         return currentExternalContext().getSessionMap().get(nome);
     }
 
+    /**
+     * Inserir uma varável de sessão 
+     * @param nome Nome da variável de sessão
+     * @param object Valor da variável a ser inserido
+     */
     public void setAttribute(String nome, Object object) {
         currentExternalContext().getSessionMap().put(nome, object);
     }

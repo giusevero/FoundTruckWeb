@@ -7,6 +7,7 @@ package br.com.foundtruck.ConectaServidor;
 
 import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
+import br.com.foundtruck.Utils.SessionUtils;
 import br.com.foundtruck.models.Usuario;
 
 /**
@@ -19,17 +20,17 @@ public class UsuarioResource {
     FromJson fromJson;
     ConexaoServer server;
     String json;
-
+    SessionUtils utils;
     private final String resource = "usuario";
 
     public UsuarioResource() {
         toJson = new ToJson();
         fromJson = new FromJson();
-        server = new ConexaoServer();
+        utils = SessionUtils.getIntance();
     }
 
     public boolean login(Usuario usuario) {
-
+        server = new ConexaoServer();
         boolean resposta;
         
         try {
@@ -47,9 +48,29 @@ public class UsuarioResource {
     }
 
     public void cadastrar(Usuario usuario) {
-
+        server = new ConexaoServer();
         json = toJson.usuarioToJson(usuario);
         
         server.postMethod(resource, json);
+    }
+    
+    public Usuario dados(String email){
+        Usuario usuario = new Usuario();
+        String usuarioJson;
+        server = new ConexaoServer();
+        
+        usuarioJson = server.getMethod(resource+"/usuario", "email", email);
+        usuario = fromJson.usuarioFromJson(usuarioJson);
+        
+        return usuario;
+    }
+    
+    public void atualizar(Usuario usuario){
+        server = new ConexaoServer();
+        json = toJson.usuarioToJson(usuario);
+        if(usuario.getSenha().equals("")||usuario.getSenha()==null)
+            usuario.setSenha((String) utils.getAttribute("senha"));
+        server.putMethod(resource, json);
+        
     }
 }
