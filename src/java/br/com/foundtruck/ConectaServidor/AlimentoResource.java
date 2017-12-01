@@ -7,6 +7,7 @@ package br.com.foundtruck.ConectaServidor;
 
 import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
+import br.com.foundtruck.Utils.SessionUtils;
 import br.com.foundtruck.models.Alimento;
 /**
  *
@@ -18,6 +19,7 @@ public class AlimentoResource {
     FromJson fromJson;
     ConexaoServer server;
     String json;
+    SessionUtils utils;    
     
     private final String resource = "alimento";
     
@@ -30,11 +32,20 @@ public class AlimentoResource {
 }
     
         public void cadastrarA(Alimento alimento){
+            
+        server = new ConexaoServer();    
     
         json = toJson.alimentoToJson(alimento);
-        
         server.postMethod(resource, json);
         
     }
+        
+        public void atualizaA(Alimento alimento){
+        
+        server = new ConexaoServer();
+        
+        json = toJson.alimentoToJson(alimento);
+        server.putMethod(resource, json);
+        }
     
 }

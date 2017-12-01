@@ -55,7 +55,10 @@ public class FoodtruckMB implements Serializable{
     }
     
     public void atualizar(){
+        resource.atualiza(foodtruck);
         
+        context = FacesContext.getCurrentInstance();
+        ec = context.getExternalContext();
     }
             
     public Foodtruck getFoodtruck() {

@@ -7,6 +7,7 @@ package br.com.foundtruck.ConectaServidor;
 
 import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
+import br.com.foundtruck.Utils.SessionUtils;
 import br.com.foundtruck.models.Cardapio;
 /**
  *
@@ -18,6 +19,7 @@ public class CardapioResource {
     FromJson fromJson;
     ConexaoServer server;
     String json;
+    SessionUtils utils;
     
     private final String resource = "cardapio";
     
@@ -31,9 +33,18 @@ public class CardapioResource {
     
         public void cadastrarC(Cardapio cardapio) {
 
+        server = new ConexaoServer();
         
-        
+        json = toJson.cardapioToJson(cardapio);
         server.postMethod(resource, json);
     }
     
+        
+        public void atualizaC(Cardapio cardapio){
+            
+        server = new ConexaoServer();
+        
+        json = toJson.cardapioToJson(cardapio);
+        server.putMethod(resource, json);
+    }    
 }
