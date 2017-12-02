@@ -109,6 +109,53 @@ public class ConexaoServer {
             Logger.getLogger(ConexaoServer.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+    
+    /**
+     * Requisição HTTP para método POST para inserir objetos
+     * @param path Caminho da requisição
+     * @param objeto Objeto a ser inserido
+     * @return Chave primária do banco seja String ou Int
+     */
+    public String postMethodResponse(String path, String objeto) {
+        String caminho = urlServer + path;
+        String resposta = "";
+        try {
+            url = new URL(caminho);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setDoOutput(true);
+            connection.setRequestMethod(POST);
+            connection.setRequestProperty(CONTENT, JSON);
+
+            OutputStream os = connection.getOutputStream();
+            os.write(objeto.getBytes());
+            os.flush();
+            
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            br.close();
+            
+            resposta = sb.toString();
+
+            Resposta(connection);
+
+            connection.disconnect();
+
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(ConexaoServer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ConexaoServer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            Logger.getLogger(ConexaoServer.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return resposta;
+    }
+    
 
     /**
      * Requisição HTTP para método PUT para atualizar objetos

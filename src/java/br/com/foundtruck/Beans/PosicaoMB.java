@@ -5,6 +5,7 @@
  */
 package br.com.foundtruck.Beans;
 
+import java.io.Serializable;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 
@@ -14,7 +15,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "posicaoMB")
 @ViewScoped
-public class PosicaoMB {
+public class PosicaoMB implements Serializable{
 
     /**
      * Creates a new instance of PosicaoMB

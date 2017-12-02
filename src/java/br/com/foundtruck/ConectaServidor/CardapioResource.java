@@ -5,6 +5,7 @@
  */
 package br.com.foundtruck.ConectaServidor;
 
+import br.com.foundtruck.CompositeModels.Possui;
 import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
 import br.com.foundtruck.Utils.SessionUtils;
@@ -21,6 +22,7 @@ public class CardapioResource {
     String json;
     SessionUtils utils;
     
+    
     private final String resource = "cardapio";
     
     public CardapioResource(){
@@ -32,11 +34,23 @@ public class CardapioResource {
     }
     
         public void cadastrarC(Cardapio cardapio) {
-
+        String responseServer;
+        String path = "/possui";
+        Cardapio cardapio1 = new Cardapio();
+        Possui possui = new Possui();
         server = new ConexaoServer();
         
         json = toJson.cardapioToJson(cardapio);
-        server.postMethod(resource, json);
+        //server.postMethod(resource, json);
+        responseServer = server.postMethodResponse(resource, json);
+        cardapio1 = fromJson.cardapioFromJson(responseServer);
+        
+        possui.setId_cardapio(cardapio1.getId());
+        possui.setId_foodtruck((int) utils.getAttribute("id_foodtruck"));
+        String possuiJson = toJson.possuiToJson(possui);
+        
+        server.postMethod(resource+path, possuiJson);
+        
     }
     
         
