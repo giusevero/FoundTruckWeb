@@ -5,6 +5,7 @@
  */
 package br.com.foundtruck.ConectaServidor;
 
+import br.com.foundtruck.CompositeModels.Vende;
 import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
 import br.com.foundtruck.Utils.SessionUtils;
@@ -33,10 +34,22 @@ public class AlimentoResource {
     
         public void cadastrarA(Alimento alimento){
             
+        String responseServer;
+        String path = "/vende";
+        Alimento alimento1 = new Alimento();
+        Vende vende = new Vende();
         server = new ConexaoServer();    
     
         json = toJson.alimentoToJson(alimento);
-        server.postMethod(resource, json);
+        //server.postMethod(resource, json);
+        responseServer = server.postMethodResponse(resource, json);
+        alimento1 = fromJson.alimentoFromJson(responseServer);
+        
+        vende.setId_alimento(alimento1.getId());
+        vende.setId_foodtruck((int) utils.getAttribute("id_foodtruck"));
+        String vendeJson = toJson.vendeToJson(vende);
+        
+        server.postMethod(resource+path, vendeJson);
         
     }
         
@@ -46,6 +59,21 @@ public class AlimentoResource {
         
         json = toJson.alimentoToJson(alimento);
         server.putMethod(resource, json);
+        }
+        
+        public Alimento dados(){
+        
+        server = new ConexaoServer();
+        String alimentoJson;
+        Alimento alimento = new Alimento();
+        
+        alimentoJson = server.getMethod(resource + "/" + resource, json, json);
+        
+        alimento = fromJson.alimentoFromJson(alimentoJson);
+        utils.setAttribute("id_alimento", alimento.getId());
+        
+        return alimento;
+        
         }
     
 }

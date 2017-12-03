@@ -76,6 +76,12 @@ public class CardapioMB implements Serializable {
         }
 
     }
+    
+    public void dadosCardapio(){
+    
+    cardapio = resource.dados();
+    
+    }
 
     public Cardapio getCardapio() {
 

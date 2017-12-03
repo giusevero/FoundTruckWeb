@@ -69,6 +69,12 @@ public class AlimentoMB implements Serializable{
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Erro no registro! Tente de novo"));
         }
         }
+        
+    public void dadosAlimento(){
+    
+    alimento = resource.dados();
+    
+    }
     
     public Alimento getAlimento(){
     

@@ -60,5 +60,20 @@ public class CardapioResource {
         
         json = toJson.cardapioToJson(cardapio);
         server.putMethod(resource, json);
-    }    
+    }
+        
+        public Cardapio dados(){
+        
+        server = new ConexaoServer();
+        String cardapioJson;
+        Cardapio cardapio = new Cardapio();
+        
+        cardapioJson = server.getMethod(resource + "/" + resource, json, (String) utils.getAttribute(json));
+        
+        cardapio = fromJson.cardapioFromJson(cardapioJson);
+        utils.setAttribute("id_cardapio", cardapio.getId());
+        
+        return cardapio;
+        
+        }
 }

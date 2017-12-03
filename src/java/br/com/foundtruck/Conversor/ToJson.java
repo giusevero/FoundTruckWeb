@@ -6,6 +6,7 @@
 package br.com.foundtruck.Converter;
 
 import br.com.foundtruck.CompositeModels.Possui;
+import br.com.foundtruck.CompositeModels.Vende;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -31,6 +32,14 @@ public class ToJson {
         
         return possui;
     }
+    
+    public String vendeToJson(Vende objeto){
+        gson = new Gson();
+        
+        String vende = gson.toJson(objeto);
+        
+        return vende;
+    }    
     
     public String alimentoToJson(Alimento objeto) {
         gson = new Gson();
