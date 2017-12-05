@@ -9,6 +9,8 @@ import br.com.foundtruck.Converter.FromJson;
 import br.com.foundtruck.Converter.ToJson;
 import br.com.foundtruck.Utils.SessionUtils;
 import br.com.foundtruck.models.Foodtruck;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -70,5 +72,17 @@ public class FoodtruckResource {
         
         utils.setAttribute("id_foodtruck", foodtruck.getId());
         return foodtruck;
+    }
+    
+    public List<Foodtruck> foodtrucks(){
+        server = new ConexaoServer();
+        String foodtruckJson;
+        List<Foodtruck> listaFoodtruck = new ArrayList<>();
+        
+        foodtruckJson = server.getMethod(resource+"/lista", "", "");
+        
+        listaFoodtruck = fromJson.listaFoodtruckFromJson(foodtruckJson);
+        
+        return listaFoodtruck;
     }
 }

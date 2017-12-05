@@ -12,6 +12,9 @@ import br.com.foundtruck.models.Foodtruck;
 import br.com.foundtruck.models.Usuario;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.List;
 
 /**
  *
@@ -50,6 +53,14 @@ public class FromJson {
     	Foodtruck foodtruck = gson.fromJson(objeto, Foodtruck.class);
     	
     	return foodtruck;
+    }
+    
+    public List<Foodtruck> listaFoodtruckFromJson(String objeto){
+        Type listaFoodtruck = new TypeToken<List<Foodtruck>>(){}.getType();
+        gson = new Gson();
+        List<Foodtruck> lista = gson.fromJson(objeto, listaFoodtruck);
+        
+        return lista;
     }
     
     public Usuario usuarioFromJson(String json) {

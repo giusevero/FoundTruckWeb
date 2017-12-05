@@ -15,12 +15,13 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "posicaoMB")
 @ViewScoped
-public class PosicaoMB implements Serializable{
+public class PosicaoMB implements Serializable {
 
     /**
      * Creates a new instance of PosicaoMB
      */
     public PosicaoMB() {
+
     }
-    
+
 }
